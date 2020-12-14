@@ -1,22 +1,22 @@
+{% load static %}
 <html>
     <head>
         <title>Chanbi's Blog</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     </head>
     <body>
         <div>
             <h1><a href='/'>Chanbi's Blog</a></h1>
         </div>
 
-        <div>
-            <p>published: 2020/12/13 22:04</p>
-            <h2><a href="">My first post</a></h2>
-            <p>Opend a blog in Django! Will start publishing exciting contents soon. :-)</p>
-        </div>
-
-        <div>
-            <p>published: 2020/12/13 22:05</p>
-            <h2><a href="">My second post</a></h2>
-            <p>Making a django blog.</p>
-        </div>
+        {% for post in posts %}
+            <div>
+                <p>published: {{ post.published_date }}</p>
+                <h2><a href="">{{ post.title }}</a></h2>
+                <p>{{ post.text|linebreaksbr }}</p>
+            </div>
+        {% endfor %}
     </body>
 </html>
